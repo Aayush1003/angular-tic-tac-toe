@@ -20,4 +20,28 @@ describe('SquareComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display X', () => {
+    component.value = 'X';
+    fixture.detectChanges();
+    const buttons = fixture.nativeElement.querySelectorAll('button');
+    expect(buttons.length).toBe(1);
+    expect(buttons[0].textContent.trim()).toBe('X');
+  });
+
+  it('should display O', () => {
+    component.value = 'O';
+    fixture.detectChanges();
+    const buttons = fixture.nativeElement.querySelectorAll('button');
+    expect(buttons.length).toBe(1);
+    expect(buttons[0].textContent.trim()).toBe('O');
+  });
+
+  it('should display empty for null', () => {
+    component.value = null;
+    fixture.detectChanges();
+    const buttons = fixture.nativeElement.querySelectorAll('button');
+    expect(buttons.length).toBe(1);
+    expect(buttons[0].textContent.trim()).toBe('');
+  });
 });

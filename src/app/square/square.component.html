@@ -1,6 +1,3 @@
-<!-- <p> {{ rando }}</p> -->
-
-
-<button nbButton *ngIf="!value">{{ value }}</button>
-    <button nbButton hero status="success" *ngIf="value == 'X'">{{ value }}</button>
-    <button nbButton hero status="info" *ngIf="value == '0'">{{ value }}</button>
+<button *ngIf="!value" class="square-button empty"></button>
+<button *ngIf="value == 'X'" class="square-button x-player">{{ value }}</button>
+<button *ngIf="value == 'O'" class="square-button o-player">{{ value }}</button>
