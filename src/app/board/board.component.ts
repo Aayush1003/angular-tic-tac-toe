@@ -6,9 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
-  square: any[] = [];
-  xIsNext: boolean | undefined;
-  winner: any; 
+  square: ('X' | 'O' | null)[] = [];
+  xIsNext: boolean = true;
+  winner: 'X' | 'O' | 'Draw' | null = null; 
 
 
   constructor() { }
@@ -24,14 +24,17 @@ export class BoardComponent implements OnInit {
   }
 
   get player(){
-    return this.xIsNext ? 'X' : '0';
+    return this.xIsNext ? 'X' : 'O';
   }
 
   makeMove(idx:number){
-    if(!this.square[idx]){
-    this.square.splice(idx,1, this.player);
-    this.xIsNext = !this.xIsNext; 
+    if (this.winner || this.square[idx]) {
+      return;
     }
+    const newSquare = [...this.square];
+    newSquare[idx] = this.player;
+    this.square = newSquare;
+    this.xIsNext = !this.xIsNext;
     
     this.winner = this.calculateWinner();
   }
@@ -56,6 +59,9 @@ export class BoardComponent implements OnInit {
       ) {
         return this.square[a];
       }
+    }
+    if (this.square.every(s => s !== null)) {
+      return 'Draw';
     }
     return null;
   }

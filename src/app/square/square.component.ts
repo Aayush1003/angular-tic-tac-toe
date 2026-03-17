@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {MatButtonModule} from '@angular/material/button';
+import { Component, Input } from '@angular/core';
+
 @Component({
   selector: 'app-square',
   templateUrl: './square.component.html',
@@ -7,11 +7,6 @@ import {MatButtonModule} from '@angular/material/button';
 })
 export class SquareComponent {
 
-  // rando: number | undefined;
-  // constructor() {
-  //    setInterval(()=>this.rando=Math.random(),500);
-  //  }
-   @Input() value:'X' | '0' | undefined;
-
+   @Input() value: 'X' | 'O' | null = null;
 
 }
